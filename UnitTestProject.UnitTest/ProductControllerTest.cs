@@ -65,6 +65,7 @@ namespace UnitTestProject.UnitTest
 
         public void ProductDetailControllerTest(int id)
         {
+            _mock.Setup(i => i.GetByid(id)).Returns(products.First(i=>i.Id==id));
             var productDetailsController = _productsController.Details(id);
             Assert.IsType<ViewResult>(productDetailsController);
 
@@ -84,7 +85,7 @@ namespace UnitTestProject.UnitTest
         [Fact]
         public void ProductDetailInvalidTest()
         {
-            var product = _mock.Setup(i => i.GetByid(0)).Returns(new Product());
+           
             var result = _productsController.Details(0);
             var redirect = Assert.IsType<NotFoundResult>(result);
 

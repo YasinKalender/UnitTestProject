@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UnitTestProject.UI.Data;
 using UnitTestProject.UI.Entities;
+using UnitTestProject.UI.TestHelpers;
 
 namespace UnitTestProject.UI.Contollers
 {
@@ -56,14 +57,6 @@ namespace UnitTestProject.UI.Contollers
 
             _context.Update(product);
 
-
-            if (!ProductExists(id))
-            {
-                return NotFound();
-            }
-
-
-
             return NoContent();
         }
 
@@ -80,7 +73,7 @@ namespace UnitTestProject.UI.Contollers
 
         // DELETE: api/ProductsApi/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteProduct(int id)
+        public ActionResult<Product> DeleteProduct(int id)
         {
             var product = _context.GetByid(id);
             if (product == null)
@@ -92,6 +85,14 @@ namespace UnitTestProject.UI.Contollers
 
 
             return NoContent();
+        }
+
+        [HttpGet("{a}/{b}")]
+        public int TestMultiplication(int a,int b)
+        {
+            TestHelper testHelpers = new TestHelper();
+            return testHelpers.Multiplication(2, 5);
+
         }
 
         private bool ProductExists(int id)

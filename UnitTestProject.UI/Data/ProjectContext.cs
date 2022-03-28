@@ -11,6 +11,7 @@ namespace UnitTestProject.UI.Data
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +28,17 @@ namespace UnitTestProject.UI.Data
                 new Product(){Id=8,Name="Product7",Stock=100,Price=8000},
                 new Product(){Id=9,Name="Product8",Stock=100,Price=9000},
 
+
+
+            });
+
+            modelBuilder.Entity<Category>().HasData(new Category[]
+            {
+                new Category(){Id=1,Name="Category1"},
+                new Category(){Id=2,Name="Category1"},
+                new Category(){Id=3,Name="Category1"},
+                new Category(){Id=4,Name="Category1"},
+                new Category(){Id=5,Name="Category1"},
 
 
             });
